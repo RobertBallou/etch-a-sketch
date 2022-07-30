@@ -6,8 +6,19 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <button id="grid-size">grid size</button>
+        <h1>Etch-A-Sketch</h1>
         <div id="container">
+        </div>
+        <div id="menu">
+            <input id="pick-color" type="color" value="#333333" />
+            <div id="buttons">
+                <button id="reset-grid">reset</button>
+            </div>
+
+            <div id="size">
+                <div id="size-value">16 x 16</div>
+                <input id="size-slider" type="range" value="16" min="1" max="100" />
+            </div>
         </div>
         <script src="script.js"></script>
     </body>

@@ -1,9 +1,11 @@
 body {
     background-color: black;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 #container {
     background-color: gray;
@@ -12,13 +14,73 @@ body {
     grid-template-rows: repeat(16, 1fr);
     width: 800px;
     height: 800px;
+    border: 5px cyan solid;
 }
+
+#menu {
+    display: flex;
+    gap: 5px;
+}
+
+#size {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin: 0;
+}
+
 div {
-    background-color: cyan;
-    min-width: 5px;
-    min-height: 5px;
-    /* border: 1px red solid; */
+    background-color: black;
+    color: white;
 }
+
+.grid-item {
+    user-select: none;
+    background-color: white;
+}
+
 .colored {
     background-color: red;
+}
+
+#buttons {
+    background-color: black;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: cyan;
+    border-radius: 15px;
+    padding: 5px 20px;
+    border: 1px white solid;
+    font-weight: bold;
+}
+
+button:hover {
+    border: 1px blue solid;
+}
+
+input[type='color']{
+    --webkit-appearance: none;
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 50%;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+    border-radius: 50%;
 }
