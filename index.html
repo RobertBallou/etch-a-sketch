@@ -7,17 +7,30 @@
     </head>
     <body>
         <h1>Etch-A-Sketch</h1>
-        <div id="container">
-        </div>
-        <div id="menu">
-            <input id="pick-color" type="color" value="#333333" />
-            <div id="buttons">
-                <button id="reset-grid">reset</button>
+        <div id="main-container">
+            <div id="side-menu">
+                <input id="pick-color" type="color" value="#333333" />
+                <div id="buttons">
+                    <button id="reset-grid">reset</button>
+                </div>
+                <div id="size">
+                    <div id="size-value">16 x 16</div>
+                    <input id="size-slider" type="range" value="16" min="1" max="100" />
+                </div>
+                <fieldset>
+                    <legend>Select color mode</legend>
+                    <div>
+                    <input type="radio" id="color" name="colorMode" value="color"
+                            checked>
+                    <label for="color">color</label>
+                    </div>
+                    <div>
+                    <input type="radio" id="rainbow" name="colorMode" value="rainbow">
+                    <label for="rainbow">rainbow</label>
+                    </div>
+                </fieldset>
             </div>
-
-            <div id="size">
-                <div id="size-value">16 x 16</div>
-                <input id="size-slider" type="range" value="16" min="1" max="100" />
+            <div id="container">
             </div>
         </div>
         <script src="script.js"></script>
