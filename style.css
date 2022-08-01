@@ -16,7 +16,7 @@ body {
 #side-menu {
     display: flex;
     gap: 5px;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     border: 1px #93deff solid;
@@ -53,10 +53,7 @@ div {
 .grid-item {
     user-select: none;
     background-color: white;
-}
-
-.colored {
-    background-color: red;
+    border: none;
 }
 
 #buttons {
@@ -64,18 +61,25 @@ div {
     gap: 5px;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 button {
-    background-color: cyan;
+    background-color: #323643;
+    color: #f7f7f7;
     border-radius: 15px;
     padding: 5px 20px;
-    border: 1px white solid;
+    border: 1px #f7f7f7 solid;
     font-weight: bold;
+    width: 70%;
 }
 
 button:hover {
-    border: 1px blue solid;
+    border: 1px #323643 solid;
+    background-color: #93deff;
+    color: #323643;
 }
 
 input[type='color']{
@@ -93,4 +97,40 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
 	border: none;
     border-radius: 50%;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+    display: none;
+}
+
+input[type="radio"]:checked+label,
+input[type="checkbox"]:checked+label{
+    background-color: #323643;
+    font-weight: 500;
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    text-align: center;
+}
+
+label{
+    border: 1px solid #f7f7f7;
+    padding:5px 20px;
+    cursor:pointer;
+    border-radius: 15px;
+    width: 70%;
+    text-align: center;
+}
+
+#pick-color {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }

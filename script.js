@@ -1,11 +1,15 @@
 let container = document.getElementById('container');
 let pickColor = document.getElementById('pick-color')
+let pickGridColor = document.getElementById('grid-color')
 let sizeValue = document.getElementById('size-value')
 let sizeSlider = document.getElementById('size-slider')
+let gridItem = document.getElementsByClassName('grid-item');
 
 let size = 16;
-let color = 'black';
+let color = '#323643';
+let gridColor = '#FFFFFF'
 let colorMode = 'color';
+let gridLines = false;
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -22,19 +26,20 @@ function createGrid(size){
         for (let i = 0; i < (size*size); i++){
             let div = document.createElement('div');
             div.className = "grid-item";
+            div.style.backgroundColor = `${gridColor}`;
             div.addEventListener('mouseover', changeColor)
             div.addEventListener('mousedown', changeColor)
             container.appendChild(div);
         }
-    }   
+    } toggleGridLines();
 }
 
 //function for changing background color
 function changeColor(e){
-    console.log(colorMode)
     if(e.type === 'mouseover' && !mouseDown) return;
     if (colorMode === 'color'){
         e.target.style.backgroundColor = color;
+        e.target.classList.add("colored");
     } else if (colorMode === 'rainbow'){
         let a = Math.floor(Math.random()*256);
         let b = Math.floor(Math.random()*256);
@@ -43,20 +48,40 @@ function changeColor(e){
     }
 }
 
+//function to add grid lines based off if gridLines is true or false.
+function toggleGridLines(){
+    if (gridLines === true){
+        Array.from(document.getElementsByClassName("grid-item")).forEach((item) => {
+                item.style.border = "1px solid black";
+            });
+    } else if (gridLines === false){
+        Array.from(document.getElementsByClassName("grid-item")).forEach((item) => {
+                item.style.border = "none";
+            });
+    }
+}
+
+
 //event listener allowing you to clear hovered grid.
 document.getElementById('reset-grid').onclick = () => {
     createGrid(size);
 }
 
-//pick a color for the background
+//pick a color for the pen
 pickColor.oninput = (e) => {
     color = e.target.value;
-    console.log(color);
+
+}
+
+//pick a color for the background
+pickGridColor.oninput = (e) => {
+    gridColor = e.target.value;
+
 }
 
 //event listener to change the displayed size on slider
 sizeSlider.onmousemove = (e) => {
-    sizeValue.innerHTML = `${e.target.value} x ${e.target.value}`;
+    sizeValue.innerHTML = `Grid Size: ${e.target.value} x ${e.target.value}`;
 }
 
 //event listener to change the grid to set size selected
@@ -67,10 +92,21 @@ sizeSlider.onchange = (e) => {
     createGrid(e.target.value);
 }
 
+//when color button is clicked the colorMode is changed
 document.getElementById('color').oninput = () => {
     colorMode = 'color'
 }
 
+//when rainbow button is clicked the colorMode is changed
 document.getElementById('rainbow').oninput = () => {
     colorMode = 'rainbow'
+}
+
+//when gridlines is clicked add gridlines to grid-items.
+document.getElementById('grid-lines').onchange = () => {
+    if(gridLines === true){
+        gridLines = false;
+    }else if(gridLines === false){
+        gridLines = true;
+    }toggleGridLines();
 }
