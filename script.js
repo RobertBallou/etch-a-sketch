@@ -10,11 +10,11 @@ let color = '#323643';
 let gridColor = '#FFFFFF'
 let colorMode = 'color';
 let gridLines = false;
+let mouseDown = false;
 
-let mouseDown = false
+//when mouse is press down mouseDown is set to true. When up it's false.
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
-
 
 //start game with default size.
 createGrid(size);
@@ -45,6 +45,10 @@ function changeColor(e){
         let b = Math.floor(Math.random()*256);
         let c = Math.floor(Math.random()*256);
         e.target.style.backgroundColor = `rgb(${a}, ${b}, ${c})`;
+        e.target.classList.add("colored");
+    } else if (colorMode === 'eraser'){
+        e.target.style.backgroundColor = gridColor;
+        e.target.classList.remove('colored');
     }
 }
 
@@ -61,21 +65,30 @@ function toggleGridLines(){
     }
 }
 
+//function to change the background color
+function changeBackgroundColor(){
+    Array.from(document.getElementsByClassName("grid-item")).forEach((item) => {
+        if (item.className != "grid-item colored"){
+            item.style.backgroundColor = `${gridColor}`;
+        }
+    });
+}
 
 //event listener allowing you to clear hovered grid.
 document.getElementById('reset-grid').onclick = () => {
     createGrid(size);
 }
 
-//pick a color for the pen
+//event listener to pick a color for the pen
 pickColor.oninput = (e) => {
     color = e.target.value;
 
 }
 
-//pick a color for the background
+//event listener to pick a color for the background
 pickGridColor.oninput = (e) => {
     gridColor = e.target.value;
+    changeBackgroundColor();
 
 }
 
@@ -100,6 +113,11 @@ document.getElementById('color').oninput = () => {
 //when rainbow button is clicked the colorMode is changed
 document.getElementById('rainbow').oninput = () => {
     colorMode = 'rainbow'
+}
+
+//when eraser button is clicked the colorMode is changed
+document.getElementById('eraser').oninput = () => {
+    colorMode = 'eraser'
 }
 
 //when gridlines is clicked add gridlines to grid-items.
